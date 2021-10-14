@@ -11,7 +11,7 @@ const AddForm = () => {
         servings: '',
         yield: '',
         nutritionInfo: '',
-        ingridients: ''
+        ingredients: ''
     })
 
     const handleChange = e => {
@@ -71,8 +71,8 @@ const AddForm = () => {
                     </label>
                 </div>
                 <div className='form-group'>
-                    <label>ingridents:
-                        <input onChange={handleChange} value={state.nutritionInfo}/>
+                    <label>Ingredients:
+                        <input onChange={handleChange} value={state.ingredients}/>
                     </label>
                 </div>
             </form>

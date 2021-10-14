@@ -6,7 +6,7 @@ const RecipeList = () => {
     return(
         <div className='list-container'>
         {
-            recipes.map(smurf => <Recipe />) 
+            recipes.map(recipe => <Recipe />) 
         }
         </div>)
 }
