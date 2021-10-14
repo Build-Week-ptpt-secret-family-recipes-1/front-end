@@ -28,5 +28,5 @@ How long do you think it will take to implement these features? Less than 2 week
 Do you anticipate working on stretch functionality after completion of a Minimal Viable Product? Yes if time permits.
 9:31
 Could you try the link again? It works for me
-9:33
+
 https://www.notion.so/Product-Vision-Document-a0ad7655ff584d1fbcb6776812fc32c7
