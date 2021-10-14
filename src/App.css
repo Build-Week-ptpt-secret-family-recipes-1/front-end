@@ -1,0 +1,13 @@
+nav {
+  background-color: orange;
+  height: 100px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  font-size: 25px;
+}
+
+nav a {
+  margin-right: 10px;
+  text-decoration: none;
+}
