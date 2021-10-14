@@ -1,4 +1,6 @@
-import logo from './logo.svg';
+import React from 'react';
+import HomePage from './components/HomePage';
+
 import './App.css';
 
 function App() {
@@ -9,6 +11,7 @@ function App() {
         <a href="#">Login</a>
         <a href="#">Logout</a>
       </nav>
+      <HomePage />
     </div>
   );
 }
