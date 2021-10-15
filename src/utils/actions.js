@@ -3,10 +3,17 @@ import axiosWithAuth from './axiosWithAuth';
 
 export const REGISTER_START = "REGISTER_START";
 export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
+
 export const REGISTER_FAILURE = "REGISTER_FAILURE";
 
 export const registerUser = (credentials, history) => dispatch => {
     const userCred = { email: credentials.email, password: credentials.password }
+    
+export const REGISTER_FAIL = "REGISTER_FAIL";
+
+export const registerUser = (credentials, history) => dispatch => {
+    const userCred = { email: data.email, password: data.password }
+
     dispatch({ type: REGISTER_START });
     axios
       .post(
@@ -51,6 +58,8 @@ export const logIn = (credentials, history) => dispatch => {
         return false;
       });
   };
+
+export const LOG_IN_FAIL = "LOG_IN_FAIL";
 
 export const FIND_ALL_USERS_START = "FIND_ALL_USERS_START"
 export const FIND_ALL_USERS_SUCCESS = "FIND_ALL_USERS_SUCCESS"
