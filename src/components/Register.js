@@ -4,7 +4,7 @@ import {Link} from "route-reactor-dom";
 
 const Register = (props) => {
 
-    initialFormValues = {
+    const initialFormValues = {
         email: "",
         password1: "",
         password2: "",
@@ -23,7 +23,7 @@ const Register = (props) => {
     };
 
     const clearForm = () => {
-        setFormValues(initialFormValues );
+        setFormValues(initialFormValues);
     }
 
     const handleSubmit = (e) => {
@@ -35,7 +35,7 @@ const Register = (props) => {
                 first_name: {first_name},
                 last_name: {last_name},
             };
-            setState({
+            setFormValues({
                 email: "",
                 password1: "",
                 password2: "",
@@ -43,7 +43,7 @@ const Register = (props) => {
                 last_name: "",
             });
         } else {
-            setState({...state, error })
+            setFormValues({...formValues, error })
         }
     };
 
