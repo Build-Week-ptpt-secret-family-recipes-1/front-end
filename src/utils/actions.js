@@ -53,8 +53,6 @@ export const logIn = (credentials, history) => dispatch => {
       });
   };
 
-export const LOG_IN_FAIL = "LOG_IN_FAIL";
-
 export const FIND_ALL_USERS_START = "FIND_ALL_USERS_START"
 export const FIND_ALL_USERS_SUCCESS = "FIND_ALL_USERS_SUCCESS"
 export const FIND_ALL_USERS_FAILURE = "FIND_ALL_USERS_FAILURE"
@@ -73,7 +71,7 @@ export const ADD_USER_FAILURE = "ADD_USER_FAILURE"
 
 export const GET_RECIPE_BY_ID_START = "GET_RECIPE_BY_ID_START";
 export const GET_RECIPE_BY_ID_SUCCESS = "GET_RECIPE_BY_ID_SUCCESS";
-export const GET_RECIPE_BY_ID_FAIL = "GET_RECIPE_BY_ID_FAIL";
+export const GET_RECIPE_BY_ID_FAILURE = "GET_RECIPE_BY_ID_FAILURE";
 
 export const getRecipeByID = recipeID => dispatch => {
     dispatch({ type: GET_RECIPE_BY_ID_START });
@@ -93,7 +91,7 @@ export const GET_RECIPE_BY_TYPE_FAIL = "GET_RECIPE_BY_TYPE_FAIL";
 
 export const GET_ALL_RECIPES_START = "GET_ALL_RECIPES_START";
 export const GET_ALL_RECIPES_SUCCESS = "GET_ALL_RECIPES_SUCCESS";
-export const GET_ALL_RECIPES_FAIL = "GET_ALL_RECIPES_FAIL";
+export const GET_ALL_RECIPES_FAILURE = "GET_ALL_RECIPES_FAILURE";
 
 export const getAllRecipes = recipeID => dispatch => {
     dispatch({ type: GET_ALL_RECIPES_START });
@@ -109,7 +107,7 @@ export const getAllRecipes = recipeID => dispatch => {
 
 export const ADD_RECIPE_START = "ADD_RECIPE_START";
 export const ADD_RECIPE_SUCCESS = "ADD_RECIPE_SUCCESS";
-export const ADD_RECIPE_FAIL = "ADD_RECIPE_FAIL";
+export const ADD_RECIPE_FAILURE = "ADD_RECIPE_FAILURE";
 
 export const addRecipe = (newRecipe, history) => dispatch => {
     dispatch({ type: ADD_RECIPE_START });
@@ -127,8 +125,32 @@ export const addRecipe = (newRecipe, history) => dispatch => {
 
 export const EDIT_RECIPE_START = "EDIT_RECIPE_START";
 export const EDIT_RECIPE_SUCCESS = "EDIT_RECIPE_SUCCESS";
-export const EDIT_RECIPE_FAIL = "EDIT_RECIPE_FAIL";
+export const EDIT_RECIPE_FAILURE = "EDIT_RECIPE_FAILURE";
+
+export const editRecipe = (recipeID, editedRecipe, history) => dispatch => {
+    dispatch({type: EDIT_RECIPE_START});
+    axiosWithAuth()
+        .put(`/recipes/${recipeID}`, editedRecipe)
+        .then(res => {
+            dispatch({ type: EDIT_RECIPE_SUCCESS, payload: res.data })
+            const recipe_id = res.data.id
+            history.push(`/recipes/view/${recipe_id}`)
+        })
+        .catch(err => {
+            dispatch({ type:EDIT_RECIPE_FAILURE, payload: err });
+        });
+};
 
 export const DELETE_RECIPE_START = "DELETE_RECIPE_START";
 export const DELETE_RECIPE_SUCCESS = "DELETE_RECIPE_SUCCESS";
-export const DELETE_RECIPE_FAIL = "DELETE_RECIPE_FAIL";
+export const DELETE_RECIPE_FAILURE = "DELETE_RECIPE_FAILURE";
+
+export const deleteRecipe = (recipeID, history) => dispatch => {
+    dispatch({ type: DELETE_RECIPE_START });
+    axiosWithAuth()
+        .delete(`/recipes/${recipeID}`)
+        .then(res => {
+            dispatch({ type: DELETE_RECIPE_SUCCESS, payload: res.data });
+            history.push('/');
+        });
+};
