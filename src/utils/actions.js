@@ -53,23 +53,39 @@ export const logIn = (credentials, history) => dispatch => {
       });
   };
 
-export const LOG_IN_FAIL = "LOG_IN_FAIL";
-
-export const FIND_ALL_USERS_START = "FIND_ALL_USERS_START"
-export const FIND_ALL_USERS_SUCCESS = "FIND_ALL_USERS_SUCCESS"
-export const FIND_ALL_USERS_FAILURE = "FIND_ALL_USERS_FAILURE"
-
 export const FIND_USER_START = "FIND_USER_START"
 export const FIND_USER_SUCCESS = "FIND_USER_SUCCESS"
 export const FIND_USER_FAILURE = "FIND_USER_FAILURE"
 
-export const FIND_BY_USER_START = "FIND_BY_USER_START"
-export const FIND_BY_USER_SUCCESS = "FIND_BY_USER_SUCCESS"
-export const FIND_BY_USER_FAILURE = "FIND_BY_USER_FAILURE"
+export const findUser = userID => dispatch => {
+    dispatch({ type: FIND_USER_START });
+    axiosWithAuth()
+      .get(`/users/${userID}`)
+      .then(res => {
+        dispatch({ type: FIND_USER_SUCCESS, payload: res.data.user });
+      })
+      .catch(err => {
+        dispatch({ type: FIND_USER_FAILURE, payload: err });
+      });
+  };
 
 export const ADD_USER_START = "ADD_USER_START"
 export const ADD_USER_SUCCESS = "ADD_USER_SUCCESS"
 export const ADD_USER_FAILURE = "ADD_USER_FAILURE"
+
+export const addUser = (newUser, history) => dispatch => {
+    dispatch({ type: ADD_USER_START });
+    axiosWithAuth()
+      .post("/users", newUser)
+      .then(res => {
+        dispatch({ type: ADD_USER_SUCCESS, payload: res.data });
+        const user_id = res.data[res.data.length + 1].id
+        history.push(`/users/view/${user_id}`)
+      })
+      .catch(err => {
+        dispatch({ type: ADD_USER_FAILURE, payload: err });
+      });
+  };
 
 export const GET_RECIPE_BY_ID_START = "GET_RECIPE_BY_ID_START";
 export const GET_RECIPE_BY_ID_SUCCESS = "GET_RECIPE_BY_ID_SUCCESS";
