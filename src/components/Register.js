@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { registerUser } from "../utils/actions";
 
 
 const Register = (props) => {
@@ -26,7 +27,7 @@ const Register = (props) => {
         setFormValues(initialFormValues);
     }
 
-    const handleSubmit = (e) => {
+    registerUser = (e) => {
         e.preventDefault();
         if (password1 === password2){
             const newUser = {
@@ -35,6 +36,7 @@ const Register = (props) => {
                 first_name: {first_name},
                 last_name: {last_name},
             };
+            registerUser(newUser, history);
             setFormValues({
                 email: "",
                 password1: "",
