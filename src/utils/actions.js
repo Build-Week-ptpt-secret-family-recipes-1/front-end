@@ -11,7 +11,7 @@ export const registerUser = (credentials, history) => dispatch => {
     dispatch({ type: REGISTER_START });
     axios
       .post(
-        "http://localhost:5000/api/auth/register",
+        "https://ptptsecretfamilyrecipes1.herokuapp.com/api/auth/register",
         userCred
       )
       .then(res => {
@@ -38,7 +38,7 @@ export const logIn = (credentials, history) => dispatch => {
     dispatch({ type: LOG_IN_START });
     axios
       .post(
-        "http://localhost:5000/api/auth/login",
+        "https://ptptsecretfamilyrecipes1.herokuapp.com/api/auth/login",
         credentials
       )
       .then(res => {
@@ -80,7 +80,7 @@ export const addUser = (newUser, history) => dispatch => {
       .then(res => {
         dispatch({ type: ADD_USER_SUCCESS, payload: res.data });
         const user_id = res.data[res.data.length + 1].id
-        history.push(`/users/view/${user_id}`)
+        history.push(`/users/${id}`)
       })
       .catch(err => {
         dispatch({ type: ADD_USER_FAILURE, payload: err });
@@ -134,7 +134,7 @@ export const addRecipe = (newRecipe, history) => dispatch => {
       .then(res => {
         dispatch({ type: ADD_RECIPE_SUCCESS, payload: res.data });
         const recipe_id = res.data[res.data.length + 1].id
-        history.push(`/recipes/view/${recipe_id}`)
+        history.push(`/recipes/${recipe_id}`)
       })
       .catch(err => {
         dispatch({ type: ADD_RECIPE_FAILURE, payload: err });
@@ -152,7 +152,7 @@ export const updateRecipe = (recipeID, editedRecipe, history) => dispatch => {
     .then(res => {
       dispatch({ type: EDIT_RECIPE_SUCCESS, payload: res.data });
       const recipe_id = res.data.id
-      history.push(`/recipes/view/${recipe_id}`)
+      history.push(`/recipes/${recipe_id}`)
     })
     .catch(err => {
       dispatch({ type: EDIT_RECIPE_FAILURE, payload: err });
