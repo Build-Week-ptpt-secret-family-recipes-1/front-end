@@ -1,11 +1,12 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
+import { connect } from "react-redux";
 import { registerUser } from "../utils/actions";
 
 
-const Register = (props) => {
+class Register extends React.Component{
 
-    const initialFormValues = {
+    state = {
         email: "",
         password1: "",
         password2: "",
@@ -14,30 +15,24 @@ const Register = (props) => {
         passwordMatch: true,
     }
 
-    const [ formValues, setFormValues ] = useState(initialFormValues);
-    const [error, setError] = useState(null);
-    const { push } = useHistory();
+    
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormValues({...formValues, [name]: value })
+    handleChanges = (e) => {
+        e.persist();
+        this.setState({[e.target.name]: e.target.value });
     };
-
-    const clearForm = () => {
-        setFormValues(initialFormValues);
-    }
 
     registerUser = (e) => {
         e.preventDefault();
-        if (password1 === password2){
+        if (this.state.password1 === this.state.password2){
             const newUser = {
-                email: {email},
-                password: {password1},
-                first_name: {first_name},
-                last_name: {last_name},
+                email: this.state.email,
+                password: this.state.password1,
+                first_name: this.state.first_name,
+                last_name: this.state.last_name,
             };
-            registerUser(newUser, history);
-            setFormValues({
+            this.props.registerUser(newUser, this.props.history);
+            this.setState({
                 email: "",
                 password1: "",
                 password2: "",
@@ -45,14 +40,15 @@ const Register = (props) => {
                 last_name: "",
             });
         } else {
-            setFormValues({...formValues, error })
+            this.setState({...this.state, passwordMatch: false });
         }
     };
 
-    return (
+    render() {
+      return (
         <div className="registration-page-container">
           <div className="registration-form-container">
-            {newUser ? (
+            {this.props.registeringUser ? (
               <h2>Loading</h2>
             ) : (
               <>
@@ -66,24 +62,24 @@ const Register = (props) => {
                     type="text"
                     required
                     name="email"
-                    onChange={handleChanges}
-                    value={input}
+                    onChange={this.handleChanges}
+                    value={this.input}
                   />
                   <p>Create password</p>
                   <input
                     type="password"
                     required
                     name="password1"
-                    onChange={handleChanges}
-                    value={input}
+                    onChange={this.handleChanges}
+                    value={this.input}
                   />
                   <p>Confirm password</p>
                   <input
                     type="password"
                     required
                     name="password2"
-                    onChange={handleChanges}
-                    value={input}
+                    onChange={this.handleChanges}
+                    value={this.input}
                   />
                   {passwordMatch ? (
                     <p>Oops! Your passwords don't match</p>
@@ -95,16 +91,16 @@ const Register = (props) => {
                     type="text"
                     required
                     name="first_name"
-                    onChange={handleChanges}
-                    value={input}
+                    onChange={this.handleChanges}
+                    value={this.input}
                   />
                   <p>Last Name</p>
                   <input
                     type="text"
                     required
                     name="last_name"
-                    onChange={handleChanges}
-                    value={input}
+                    onChange={this.handleChanges}
+                    value={this.input}
                   />
                   <br />
                   <button className="signup-btn" type="submit">
@@ -123,5 +119,10 @@ const Register = (props) => {
         </div>
       );
     }
+  }
 
-    export default Register;
+  const mapStateToProps = state => ({
+    signingUp: state.registeringUser
+  });
+
+    export default withRouter(connect(mapStateToProps, {registerUser})(Register));
