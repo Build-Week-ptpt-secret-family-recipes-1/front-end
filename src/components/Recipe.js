@@ -1,6 +1,7 @@
 import React from 'react';
 
-const Recipe = () => {
+const Recipe = (props) => {
+    const { recipe } = props;
     return (
         <div className='recipe-card'>
             <div className='card-body'>
@@ -13,10 +14,10 @@ const Recipe = () => {
                     <p className='card-text'>Servings:</p>
                     <p className='card-text'>Yield:</p>
                     <p className='card-text'>Nutrition Info:</p>
-                <div className='ingridients-container'></div>
-                    <h5>ingridents</h5>
-                    <ul className='ingridents'>
-                        <li>ingrident1</li>
+                <div className='ingredients-container'></div>
+                    <h5>Ingredients</h5>
+                    <ul className='ingredients'>
+                        <li>ingredient1</li>
                     </ul>
             </div>
         </div>

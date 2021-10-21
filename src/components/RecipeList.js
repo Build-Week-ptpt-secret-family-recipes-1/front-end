@@ -1,14 +1,21 @@
 import React from 'react';
 import Recipe from './Recipe';
+import { connect } from 'react-redux';
 
-const RecipeList = () => {
-
+const RecipeList = (props) => {
+    const { recipe } = props
     return(
         <div className='list-container'>
         {
-            recipes.map(recipe => <Recipe />) 
+            recipe.map(recipe => <Recipe recipe={recipe}/>) 
         }
         </div>)
 }
 
-export default RecipeList;
+const mapStateToProps = (state) => {
+    return ({
+        recipe: state.recipe
+    })
+}
+
+export default connect(mapStateToProps, { })(RecipeList);
