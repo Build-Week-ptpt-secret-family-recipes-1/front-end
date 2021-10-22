@@ -40,7 +40,7 @@ const EditRecipe = (props) => {
                         </label>
                     </div>
                     <div className='form-group'>
-                        <label>Descrpition:
+                        <label>Description:
                             <input onChange={handleChange} value={state.description} name='description' />
                         </label>
                     </div>
