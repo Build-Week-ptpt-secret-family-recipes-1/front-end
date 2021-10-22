@@ -67,7 +67,7 @@ const AddForm = () => {
         e.preventDefault();
         setState(state => {
           const types = [...state.types, type.toString()];
-          const commonTypes = state.commonTypes.filter(el => el !== ype);
+          const commonTypes = state.commonTypes.filter(el => el !== type);
           return {
             types,
             commonTypes
@@ -216,10 +216,10 @@ const AddForm = () => {
                             <div className="prep">
                                 <ShowArrayItem
                                 listNum={index + 1}
-                                item={direction}
+                                item={prep}
                                 key={index}
                                 />
-                                <button onClick= {e => this.deleteDirection(e,index)}>
+                                <button onClick= {e => deletePrep(e,index)}>
                                     Delete Prep 
                                 </button>
                             </div>
@@ -244,13 +244,13 @@ const AddForm = () => {
                         type="text"
                         name="type"
                         onChange={handleChanges}
-                        value={state.tag}
+                        value={state.type}
                     />
-                    <button onClick={addCustomType}>Add Custom Tag</button>
+                    <button onClick={addCustomType}>Add Custom Type</button>
                     {state.types.map((type, index) => (
                         <div className="type">
                         <p>{type}</p>
-                        <button onClick={e => deleteTag(e, index)}>
+                        <button onClick={e => deleteType(e, index)}>
                             Delete Type
                         </button>
                         </div>
