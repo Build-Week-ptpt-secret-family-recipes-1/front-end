@@ -227,14 +227,14 @@ const AddForm = () => {
                     </label>
                 </div>
 
-                <div className="types-wrapper">
+                <div className="types-container">
                     <label>Types
                     <div className="types">
                     {state.commonTypes.map((type, index) => {
                         return (
                         <button
                             key={index}
-                            onClick={e => addTypeByButton(e, tag)}
+                            onClick={e => addTypeByButton(e, type)}
                         >
                             {type}
                         </button>
