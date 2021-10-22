@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link, Redirect} from 'react-router-dom';
-import axiosWithAuth from '../utils/axiosWithAuth';
-import { logIn } from '../utils/actions';
+import axiosWithAuth from '../../utils/axiosWithAuth';
+import { logIn } from '../../utils/actions';
 import { connect } from 'react-redux';
 import { withRouter } from "react-router";
 
