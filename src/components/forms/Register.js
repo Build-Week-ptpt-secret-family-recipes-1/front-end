@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { registerUser } from "../utils/actions";
+import { registerUser } from "../../utils/actions";
 
 
 class Register extends React.Component{
@@ -52,7 +52,7 @@ class Register extends React.Component{
               <h2>Loading</h2>
             ) : (
               <>
-                <form className="form-container" onSubmit={this.signUp}>
+                <form className="form-container" onSubmit={this.registerUser}>
                   <div className="registration-form-header">
                     <h3>Welcome to</h3>
                     <h2>Secret Recipes</h2>
@@ -103,12 +103,12 @@ class Register extends React.Component{
                     value={this.input}
                   />
                   <br />
-                  <button className="signup-btn" type="submit">
-                    Sign Up
+                  <button className="register-btn" type="submit">
+                    Register
                   </button>
-                  <p className="signup-small-font">
-                    Already a member? Sign in{" "}
-                    <Link to="/login" className="signup-link">
+                  <p className="register-small-font">
+                    Already a member? Log in{" "}
+                    <Link to="/login" className="login-link">
                       here
                     </Link>
                   </p>
@@ -122,7 +122,7 @@ class Register extends React.Component{
   }
 
   const mapStateToProps = state => ({
-    signingUp: state.registeringUser
+    registeringUser: state.registeringUser
   });
 
     export default withRouter(connect(mapStateToProps, {registerUser})(Register));
