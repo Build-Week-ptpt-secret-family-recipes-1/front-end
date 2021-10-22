@@ -33,7 +33,7 @@ import {
   
   const initialState = {
     recipe: null,
-    titles: [],
+    recipes: [],
     error: null,
     registeringUser: false,
     loggingIn: false,
@@ -45,7 +45,7 @@ import {
     addingRecipe: false,
     editingRecipe: false,
     deletingRecipe: false,
-    uniqueTags: ["all"],
+    uniqueTypes: ["all"],
     currentRecipes: [],
     success: false
   };
@@ -180,26 +180,26 @@ import {
         return {
           ...state,
           error: null,
-          fetchingTitles: true,
+          getAllRecipes: true,
           success: false
         };
 
       case GET_ALL_RECIPES_SUCCESS:
-        const tempUniqueTags = ["all"];
-        action.payload.recipes.forEach(title => {
-          title.tags.forEach(tag => {
-            if (!tempUniqueTags.includes(tag)) {
-              tempUniqueTags.push(tag);
+        const tempUniqueTypes = ["all"];
+        action.payload.recipes.forEach(recipe => {
+          recipe.types.forEach(type => {
+            if (!tempUniqueTypes.includes(type)) {
+              tempUniqueTypes.push(type);
             }
           });
         });
         console.log("payload", action.payload.recipes)
         return {
           ...state,
-          titles: action.payload,
+          recipes: action.payload,
           getAllRecipes: false,
           error: null,
-          uniqueTags: tempUniqueTags,
+          uniqueType: tempUniqueTypes,
           currentRecipes: action.payload.recipes,
           success: true
         };
