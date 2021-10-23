@@ -1,58 +1,72 @@
 import React from "react";
-import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
+import { Link, withRouter } from "react-router-dom";
 import { registerUser } from "../../utils/actions";
 
+import styled from 'styled-components'
+
+const StyledFormContainer = styled.div`
+display:flex;
+justify-content:center;`
+
+const StyledForm = styled.form`
+display:flex;
+flex-direction:column;
+width:30%;`
 
 class Register extends React.Component{
 
     state = {
         email: "",
-        password1: "",
-        password2: "",
+        username: "",
+        password: "",
+        // password2: "",
         first_name: "",
         last_name: "",
-        passwordMatch: true,
+        // passwordMatch: true,
     }
-
-    
+   
 
     handleChanges = (e) => {
         e.persist();
         this.setState({[e.target.name]: e.target.value });
     };
 
-    registerUser = (e) => {
+    signUp = (e) => {
         e.preventDefault();
-        if (this.state.password1 === this.state.password2){
+        // if (this.state.password === this.state.password2){
+
             const newUser = {
                 email: this.state.email,
-                password: this.state.password1,
+                username: this.state.username,
+                password: this.state.password,
                 first_name: this.state.first_name,
                 last_name: this.state.last_name,
             };
             this.props.registerUser(newUser, this.props.history);
             this.setState({
                 email: "",
-                password1: "",
-                password2: "",
+                password: "",
+                username: "",
+                // password2: "",
                 first_name: "",
                 last_name: "",
             });
-        } else {
-            this.setState({...this.state, passwordMatch: false });
-        }
+        // } 
+        // else {
+        //     this.setState({...this.state, passwordMatch: false });
+        // }
     };
 
     render() {
       return (
         <div className="registration-page-container">
-          <div className="registration-form-container">
+          <StyledFormContainer className="registration-form-container">
             {this.props.registeringUser ? (
               <h2>Loading</h2>
             ) : (
               <>
-                <form className="form-container" onSubmit={this.registerUser}>
+                <StyledForm className="form-container" onSubmit={this.signUp}>
                   <div className="registration-form-header">
                     <h3>Welcome to</h3>
                     <h2>Secret Recipes</h2>
@@ -65,15 +79,23 @@ class Register extends React.Component{
                     onChange={this.handleChanges}
                     value={this.input}
                   />
+                  <p>Username</p>
+                  <input
+                    type="text"
+                    required
+                    name="username"
+                    onChange={this.handleChanges}
+                    value={this.input}
+                  />
                   <p>Create password</p>
                   <input
                     type="password"
                     required
-                    name="password1"
+                    name="password"
                     onChange={this.handleChanges}
                     value={this.input}
                   />
-                  <p>Confirm password</p>
+                  {/* <p>Confirm password</p>
                   <input
                     type="password"
                     required
@@ -81,11 +103,11 @@ class Register extends React.Component{
                     onChange={this.handleChanges}
                     value={this.input}
                   />
-                  {passwordMatch ? (
+                  {this.passwordMatch ? (
                     <p>Oops! Your passwords don't match</p>
                   ) : (
                     ""
-                  )}
+                  )} */}
                   <p>First Name</p>
                   <input
                     type="text"
@@ -112,10 +134,10 @@ class Register extends React.Component{
                       here
                     </Link>
                   </p>
-                </form>
+                </StyledForm>
               </>
             )}
-          </div>
+          </StyledFormContainer>
         </div>
       );
     }
@@ -125,4 +147,5 @@ class Register extends React.Component{
     registeringUser: state.registeringUser
   });
 
-    export default withRouter(connect(mapStateToProps, {registerUser})(Register));
+    // export default withRouter(connect(mapStateToProps, {registerUser})(Register));
+    export default connect(mapStateToProps, { registerUser })(Register)

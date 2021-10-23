@@ -1,8 +1,8 @@
-import React from 'react'
+import React from 'react';
 import homepageImg from '../images/homepage-img.jpeg';
-import './HomePage.css'
+import './HomePage.css';
 import NavBar from './NavBar';
-import SearchByType from './forms/SearchByType'
+import SearchByType from './forms/searchByType';
 import RecipeSidebar from './recipe components/RecipeSidebar';
 
 export default function HomePage () {
