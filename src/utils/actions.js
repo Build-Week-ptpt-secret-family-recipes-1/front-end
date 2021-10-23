@@ -6,27 +6,33 @@ export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
 export const REGISTER_FAILURE = "REGISTER_FAILURE";
 
 export const registerUser = (credentials, history) => dispatch => {
-    const userCred = { email: data.email, password: data.password }
+    // const userCred = {
+    //   email: credentials.email,
+    //   password: credentials.password,
+    //   first_name: credentials.first_name,
+    //   last_name: credentials.last_name
+    // }
 
     dispatch({ type: REGISTER_START });
     axios
       .post(
         "https://ptptsecretfamilyrecipes1.herokuapp.com/api/auth/register",
-        userCred
+        credentials
       )
       .then(res => {
+        console.log(res)
         dispatch({ type: REGISTER_SUCCESS });
-        if (res.data.token) {
-          localStorage.setItem("token", res.data.token);
-          history.push('/');
+        if (res.token) {
+          localStorage.setItem("token", res.token);
+          history.push(`/users/${res.userId}/recipes`);
         } else {
           credentials.history.push('/login');
         }
-        return true;
+        // return true;
       })
       .catch(err => {
         dispatch({ type: REGISTER_FAILURE, payload: err });
-        return false;
+        // return false;
       });
   };
 
@@ -80,7 +86,7 @@ export const addUser = (newUser, history) => dispatch => {
       .then(res => {
         dispatch({ type: ADD_USER_SUCCESS, payload: res.data });
         const user_id = res.data[res.data.length + 1].id
-        history.push(`/users/${id}`)
+        history.push(`/users/${user_id}`)
       })
       .catch(err => {
         dispatch({ type: ADD_USER_FAILURE, payload: err });
@@ -99,7 +105,7 @@ export const getRecipeByID = recipeID => dispatch => {
         dispatch({ type: GET_RECIPE_BY_ID_SUCCESS, payload: res.data.recipe });
       })
       .catch(err => {
-        dispatch({ type: FETCH_RECIPE__BY_ID_FAILURE, payload: err });
+        dispatch({ type: GET_RECIPE_BY_ID_FAILURE, payload: err });
       });
   };
 
