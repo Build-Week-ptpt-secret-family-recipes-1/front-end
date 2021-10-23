@@ -42,7 +42,7 @@ export const LOG_IN_FAILURE = "LOG_IN_FAILURE";
 
 export const logIn = (credentials, history) => dispatch => {
     dispatch({ type: LOG_IN_START });
-    axios
+    axiosWithAuth
       .post(
         "https://ptptsecretfamilyrecipes1.herokuapp.com/api/auth/login",
         credentials
@@ -50,7 +50,7 @@ export const logIn = (credentials, history) => dispatch => {
       .then(res => {
         dispatch({ type: LOG_IN_SUCCESS });
         localStorage.setItem("token", res.data.token);
-        history.push('/');
+        // history.push('/');
         return true;
       })
       .catch(err => {
