@@ -36,7 +36,7 @@ class RecipeSideBar extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  names: state.names.recipes,
+  // names: state.names.recipes,
   getAllRecipes: state.getAllRecipes,
   currentRecipes: state.currentRecipes
 });

@@ -7,11 +7,11 @@ import { connect } from 'react-redux';
 import { withRouter } from "react-router";
 
 
-class Login extends React.Component {
+class LoginForm extends React.Component {
 
     state = {
         credentials: {
-            email: "",
+            username: "",
             password:"",
         }
     }
@@ -31,7 +31,7 @@ class Login extends React.Component {
         this.props.logIn(this.state.credentials, this.props.history);
         this.setState({
             credentials: {
-                email: "",
+                username: "",
                 password: "",
             }
         });
@@ -54,9 +54,9 @@ class Login extends React.Component {
     };
 
     render() {
-        if(localStorage.getItem("token")) {
-            return <Redirect to="/" />; 
-        }
+        // if(localStorage.getItem("token")) {
+        //     return <Redirect to="/" />; 
+        // }
         return (
             <div className='login-container'>
                 <div>
@@ -89,9 +89,9 @@ class Login extends React.Component {
                                         Log In
                                     </button>
                                     <p> Not a member? Sign up {''}
-                                    <Link className="register-link" to="/registration">
+                                    <Link className="register-link" to="/register">
                                         here </Link>
-                                        </p>
+                                    </p>
                             </form>
                         </>
                     )}
@@ -106,4 +106,4 @@ const mapStateToProps = state => ({
     success: state.success,
 })
 
-export default withRouter(connect(mapStateToProps, {logIn})(Login));
+export default connect(mapStateToProps, {logIn})(LoginForm);
