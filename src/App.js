@@ -2,6 +2,9 @@ import React from 'react';
 import HomePage from './components/HomePage';
 import Login from './components/forms/LoginForm';
 import Register from './components/forms/RegisterForm';
+import EditRecipeForm from './components/recipe components/EditRecipe';
+import Recipe from './components/recipe components/Recipe';
+import AddRecipe from './components/recipe components/AddRecipe'
 import NavBar from './components/NavBar';
 import PrivateRoute from './utils/PrivateRoute'
 
@@ -39,7 +42,7 @@ function App() {
         </PrivateRoute>
 
         <PrivateRoute path='/recipes/edit/:id'>
-          <EditRecipe />
+          <EditRecipeForm />
         </PrivateRoute>
         
       </Switch>
