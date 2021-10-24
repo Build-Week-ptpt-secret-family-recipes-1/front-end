@@ -42,7 +42,7 @@ export const LOG_IN_FAILURE = "LOG_IN_FAILURE";
 
 export const logIn = (credentials, history) => dispatch => {
     dispatch({ type: LOG_IN_START });
-    axiosWithAuth
+    axiosWithAuth()
       .post(
         "https://ptptsecretfamilyrecipes1.herokuapp.com/api/auth/login",
         credentials

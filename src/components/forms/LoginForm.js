@@ -28,7 +28,7 @@ class LoginForm extends React.Component {
 
     logIn = (e) => {
         e.preventDefault();
-        this.props.logIn(this.state.credentials, this.props.history);
+        // this.props.logIn(this.state.credentials, this.props.history);
         this.setState({
             credentials: {
                 username: "",
@@ -67,13 +67,13 @@ class LoginForm extends React.Component {
                             <form className='form-container' onSubmit={this.logIn}>
                                 <h1>Welcome to Secret Recipe List</h1>
                                 <h2>Please enter your account information.</h2>
-                                    <p>e-mail:</p>
+                                    <p>Username</p>
                                     <input
                                         id="username"
                                         type="text"
                                         value={this.input}
-                                        placeholder="e-mail"
-                                        name="e-mail"
+                                        placeholder="username"
+                                        name="username"
                                         onChange={this.handleChanges}
                                     />
                                     <p>password:</p>
