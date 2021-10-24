@@ -19,7 +19,7 @@ const Navigation = ({ history }) => {
                 <NavLink to="/">Home</NavLink>
                 <NavLink to="/login">Login</NavLink>
                 <NavLink to="/register">Register</NavLink>
-                <NavLink to="/add-recipe">Add New Recipe</NavLink>
+                <NavLink to={`/users/${window.localStorage.getItem('userId')}/recipes/add`}>Add New Recipe</NavLink>
                 <NavLink to="/">Sign Out</NavLink>
                 {/* <button onClick={logOut}>Sign Out</button> */}
               </div>

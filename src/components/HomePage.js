@@ -3,7 +3,7 @@ import homepageImg from '../images/homepage-img.jpeg';
 import './HomePage.css';
 // import NavBar from './NavBar';
 import SearchByType from './forms/searchByType';
-import RecipeSidebar from './recipe components/RecipeSidebar';
+
 
 export default function HomePage () {
     return (
@@ -14,7 +14,7 @@ export default function HomePage () {
             <div className='body'>
                 <img src={homepageImg} alt="collection of dishes" />
                 <SearchByType />
-                <RecipeSidebar />
+               
             </div>
         // </div>
     )

@@ -9,7 +9,7 @@ class RecipeSideBar extends React.Component {
   }
   render() {
     if (!this.props.currentRecipes || this.props.getAllRecipes) {
-      return <p>Loading...</p>;
+      return <p>Click on the Add Recipe button above!</p>;
     } else {
       return (
         <div className="recipe-cards-wrapper">
