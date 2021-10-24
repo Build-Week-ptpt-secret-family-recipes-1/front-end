@@ -16,3 +16,10 @@ nav a {
   font-size: 30px;
 
 }
+
+@media all and (max-width: 500px) {
+  nav a {
+    display: flex;
+    margin: 20px;
+  }
+}
