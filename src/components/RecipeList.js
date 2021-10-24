@@ -27,25 +27,17 @@ const RecipeList = (props) => {
     return(
         <div className='list-container'>
 
+            <RecipeSidebar />
+
             <div className="recipeList">
                 <p>recipes</p>
                 {currentRecipes.map(recipe => {
                     return <h3 key={recipe.recipeName}>{recipe.recipeName}</h3>
                 })}
 
-            </div>
+            </div>      
 
-            <p>
-                Grandma's Chocolate Chip Cookies
-                Aunt Cheryl's Cobb Salad
-                Uncle Ted's Babyback Ribs
-                Papa's Mad Good BBQ
-            </p>
-             
-            <RecipeSidebar />
-
-            
-            
+                        
             {/* {
             recipes.map(recipe => <Recipe />) 
         } */}
