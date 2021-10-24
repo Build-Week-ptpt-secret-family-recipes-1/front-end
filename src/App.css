@@ -2,7 +2,7 @@ nav {
   background-color: orange;
   height: 100px;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
   font-size: 25px;
 }
@@ -10,9 +10,15 @@ nav {
 nav a {
   margin-right: 10px;
   text-decoration: none;
+  border: 2px solid white;
+  background-color: red;
+  padding: 10px;
+  font-size: 20px;
+  color: white;
 }
 
 .title-bar h1 {
   font-size: 30px;
-
+  margin-left: 10px;
 }
+
