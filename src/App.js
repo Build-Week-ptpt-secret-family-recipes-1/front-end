@@ -2,7 +2,7 @@ import React from 'react';
 import HomePage from './components/HomePage';
 import Login from './components/forms/LoginForm';
 import Register from './components/forms/RegisterForm';
-import NavBar from  './components/NavBar';
+import NavBar from './components/NavBar';
 
 import './App.css';
 import { Route, Switch } from 'react-router';
@@ -20,7 +20,7 @@ function App() {
       <HomePage />
       
       <Switch>
-
+        
         <Route path="/login">
           <Login />
         </Route>
@@ -28,6 +28,18 @@ function App() {
         <Route path="/register">
           <Register />
         </Route>
+
+        <PrivateRoute path='/recipes/view/:id'>
+          <Recipe />
+        </PrivateRoute>
+
+        <PrivateRoute path='/:id/recipes'>
+          <AddRecipe />
+        </PrivateRoute>
+
+        <PrivateRoute path='/recipes/edit/:id'>
+          <EditRecipe />
+        </PrivateRoute>
         
       </Switch>
       
