@@ -55,11 +55,9 @@ const AddForm = () => {
     
       const addPrep = e => {
         e.preventDefault();
-        this.setState(state => {
+        setState(state => {
           const directions = [...state.prep];
-          return {
-            prep
-          };
+          return directions;
         });
       };
     
@@ -75,7 +73,7 @@ const AddForm = () => {
         });
       };
 
-      addCustomType = (e) => {
+      const addCustomType = (e) => {
         e.preventDefault();
         const newTypes = [...state.types]
         newTypes.push(state.type)
@@ -121,8 +119,8 @@ const AddForm = () => {
           prep: state.prep,
           type: state.types
         };
-        console.log('submit recipe history', history);
-        addRecipe(newRecipe, history);
+        // console.log('submit recipe history', history);
+        addRecipe(newRecipe);
       };
     
 

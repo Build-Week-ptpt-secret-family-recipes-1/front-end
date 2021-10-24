@@ -2,14 +2,13 @@ import React from "react";
 import { connect } from "react-redux";
 import { getRecipeByID, updateRecipe } from "../../utils/actions";
 import { withRouter } from "react-router-dom";
-import ShowArrayItem from "../Forms/ShowArrayItem";
-import { axiosWithAuth } from "../../utils/axiosWithAuth";
+import ShowArrayItem from "../forms/ShowArrayItem";
+import axiosWithAuth from "../../utils/axiosWithAuth";
 
 class EditRecipeForm extends React.Component {
     state = {
         name: '',
         by: '',
-        prep: '',
         prep: '',
         total: '',
         servings: '',
@@ -155,7 +154,7 @@ class EditRecipeForm extends React.Component {
     
       updateRecipe = e => {
         e.preventDefault();
-        const fullNoteString = this.state.fullNote.join("||");
+        // const fullNoteString = this.state.fullNote.join("||");
         const updatedRecipe = {
           name: this.state.name,
           by: this.state.by,
