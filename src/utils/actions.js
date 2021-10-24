@@ -117,10 +117,11 @@ export const GET_ALL_RECIPES_START = "GET_ALL_RECIPES_START";
 export const GET_ALL_RECIPES_SUCCESS = "GET_ALL_RECIPES_SUCCESS";
 export const GET_ALL_RECIPES_FAILURE = "GET_ALL_RECIPES_FAILURE";
 
-export const getAllRecipes = recipeID => dispatch => {
+export const getAllRecipes = userID => dispatch => {
     dispatch({ type: GET_ALL_RECIPES_START });
+    console.log('userID', userID)
     axiosWithAuth()
-      .get(`/recipes`)
+      .get(`/users/${window.localStorage.getItem('userId')}/recipes`)
       .then(res => {
         dispatch({ type: GET_ALL_RECIPES_SUCCESS, payload: res.data });
       })

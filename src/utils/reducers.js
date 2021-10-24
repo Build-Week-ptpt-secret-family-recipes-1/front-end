@@ -185,24 +185,28 @@ import {
         };
 
       case GET_ALL_RECIPES_SUCCESS:
-        const tempUniqueTypes = ["all"];
-        action.payload.recipes.forEach(recipe => {
-          recipe.types.forEach(type => {
-            if (!tempUniqueTypes.includes(type)) {
-              tempUniqueTypes.push(type);
-            }
-          });
-        });
-        console.log("payload", action.payload.recipes)
-        return {
+        // const tempUniqueTypes = ["all"];
+        // action.payload.recipes.forEach(recipe => {
+        //   recipe.types.forEach(type => {
+        //     if (!tempUniqueTypes.includes(type)) {
+        //       tempUniqueTypes.push(type);
+        //     }
+        //   });
+        // });
+        // console.log("payload", action.payload.recipes)
+        // return {
+        //   ...state,
+        //   recipes: action.payload,
+        //   getAllRecipes: false,
+        //   error: null,
+        //   uniqueType: tempUniqueTypes,
+        //   currentRecipes: action.payload.recipes,
+        //   success: true
+        // };
+        return({
           ...state,
-          recipes: action.payload,
-          getAllRecipes: false,
-          error: null,
-          uniqueType: tempUniqueTypes,
-          currentRecipes: action.payload.recipes,
-          success: true
-        };
+          currentRecipes: action.payload
+        })
 
       case GET_ALL_RECIPES_FAILURE:
         return {
