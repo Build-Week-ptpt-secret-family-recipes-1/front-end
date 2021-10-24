@@ -136,7 +136,7 @@ export const ADD_RECIPE_FAILURE = "ADD_RECIPE_FAILURE";
 export const addRecipe = (newRecipe, history) => dispatch => {
     dispatch({ type: ADD_RECIPE_START });
     axiosWithAuth()
-      .post("/recipes", newRecipe)
+      .post(`/users/${window.localStorage.getItem('userId')}/recipes`, newRecipe)
       .then(res => {
         dispatch({ type: ADD_RECIPE_SUCCESS, payload: res.data });
         const recipe_id = res.data[res.data.length + 1].id

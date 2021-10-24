@@ -4,7 +4,8 @@ import Login from './components/forms/LoginForm';
 import Register from './components/forms/RegisterForm';
 import EditRecipeForm from './components/recipe components/EditRecipe';
 import Recipe from './components/recipe components/Recipe';
-import AddRecipe from './components/recipe components/AddRecipe'
+import AddRecipe from './components/forms/AddRecipeForm';
+import RecipeList from './components/RecipeList';
 import NavBar from './components/NavBar';
 import PrivateRoute from './utils/PrivateRoute'
 
@@ -33,12 +34,12 @@ function App() {
           <Register />
         </Route>
 
-        <PrivateRoute path='/recipes/view/:id'>
-          <Recipe />
+        <PrivateRoute path={`/users/${window.localStorage.getItem('userId')}/recipes/add`}>
+          <AddRecipe />
         </PrivateRoute>
 
-        <PrivateRoute path='/:id/recipes'>
-          <AddRecipe />
+        <PrivateRoute path={`/users/${window.localStorage.getItem('userId')}/recipes`}>
+          <RecipeList />
         </PrivateRoute>
 
         <PrivateRoute path='/recipes/edit/:id'>

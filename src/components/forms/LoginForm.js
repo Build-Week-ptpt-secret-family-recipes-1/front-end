@@ -35,22 +35,23 @@ class LoginForm extends React.Component {
                 password: "",
             }
         });
-        // axiosWithAuth
-        //     .post("login", formValues)
-        //     .then(({data}) => {
-        //         const { username, role, token } = data;
-        //         window.localStorage.setItem("username", username);
-        //         window.localStorage.setItem("role", role);
-        //         window.localStorage.setItem("token", token);
-        //         clearForm();
-        //     })
-        //     .catch((error) => {
-        //         console.log(error.response.data);
-        //         setError(error.response.data.error);
-        //     })
-        //     .finally(() => {
-        //         push("/recipelist")
-        //     })
+        axiosWithAuth()
+        .post("/auth/login", this.state.credentials)
+        .then((res) => {
+            // const { username, role, token } = data;
+            console.log(res)
+            window.localStorage.setItem("username", res.data.user.username);
+            window.localStorage.setItem('userId', res.data.user.userId)
+            // window.localStorage.setItem("role", role);
+            window.localStorage.setItem("token", res.data.token);
+            // clearForm();
+            this.props.history.push(`/users/${window.localStorage.getItem('userId')}/recipes`)
+        })
+        .catch((error) => {
+            console.log(error.response);
+            // setError(error.response.data.error);
+        })
+
     };
 
     render() {
@@ -106,4 +107,4 @@ const mapStateToProps = state => ({
     success: state.success,
 })
 
-export default connect(mapStateToProps, {logIn})(LoginForm);
+export default connect(mapStateToProps, {logIn})(withRouter(LoginForm));
