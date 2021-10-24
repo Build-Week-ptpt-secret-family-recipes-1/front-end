@@ -3,6 +3,7 @@ import HomePage from './components/HomePage';
 import Login from './components/forms/LoginForm';
 import Register from './components/forms/RegisterForm';
 import NavBar from './components/NavBar';
+import PrivateRoute from './utils/PrivateRoute'
 
 import './App.css';
 import { Route, Switch } from 'react-router';
