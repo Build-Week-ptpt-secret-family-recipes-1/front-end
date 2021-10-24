@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink, withRouter } from "react-router-dom";
-import { BASE_URL } from "../utils";
+// import { BASE_URL } from "../utils";
 
 const Navigation = ({ history }) => {
     const logOut = () => {
