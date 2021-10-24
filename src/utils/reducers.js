@@ -45,7 +45,7 @@ import {
     addingRecipe: false,
     editingRecipe: false,
     deletingRecipe: false,
-    uniqueTypes: ["all"],
+    uniqueTypes: ["All Recipes"],
     currentRecipes: [],
     success: false
   };

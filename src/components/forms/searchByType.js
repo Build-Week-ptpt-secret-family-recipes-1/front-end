@@ -4,19 +4,19 @@ import { getAllRecipes } from "../../utils/actions";
 
 class searchByType extends React.Component {
   state = {
-    currentType: "all"
+    currentType: "All Recipes"
   };
 
   searchRecipes = (e, selectedType) => {
     e.preventDefault();
-    if (selectedType === "all") {
+    if (selectedType === "All Recipes") {
       this.props.currentRecipes = this.props.recipes;
     } else {
       this.props.currentRecipes = [];
       this.props.recipes.forEach(recipe => {
-        if (recipe.types.includes(selectedType)) {
-          this.props.currentRecipes.push(recipe);
-        }
+        // if (recipe.types.includes(selectedType)) {
+        //   this.props.currentRecipes.push(recipe);
+        // }
       });
     }
   };

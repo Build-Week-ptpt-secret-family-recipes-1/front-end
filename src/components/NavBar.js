@@ -17,6 +17,8 @@ const Navigation = ({ history }) => {
         <div className="nav-links">
           <a href={BASE_URL} target="_blank">Home</a>
           <NavLink to="/">Home Page</NavLink>
+          <NavLink to="/login">Login</NavLink>
+          <NavLink to="/register">Register</NavLink>
           <NavLink to="/add-recipe">Add New Recipe</NavLink>
           <button onClick={logOut}>Sign Out</button>
         </div>
