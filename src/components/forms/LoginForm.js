@@ -85,7 +85,8 @@ class LoginForm extends React.Component {
                                         placeholder="password"
                                         name="password"
                                         onChange={this.handleChanges}
-                                    /> 
+                                    />
+                                    <br /> 
                                     <button className="login-btn" type="submit" onClick={this.logIn}>
                                         Log In
                                     </button>
