@@ -28,29 +28,30 @@ class LoginForm extends React.Component {
 
     logIn = (e) => {
         e.preventDefault();
-        this.props.logIn(this.state.credentials, this.props.history);
+        // this.props.logIn(this.state.credentials, this.props.history);
         this.setState({
             credentials: {
                 username: "",
                 password: "",
             }
         });
-        // axiosWithAuth
-        //     .post("login", formValues)
-        //     .then(({data}) => {
-        //         const { username, role, token } = data;
-        //         window.localStorage.setItem("username", username);
-        //         window.localStorage.setItem("role", role);
-        //         window.localStorage.setItem("token", token);
-        //         clearForm();
-        //     })
-        //     .catch((error) => {
-        //         console.log(error.response.data);
-        //         setError(error.response.data.error);
-        //     })
-        //     .finally(() => {
-        //         push("/recipelist")
-        //     })
+        axiosWithAuth()
+        .post("/auth/login", this.state.credentials)
+        .then((res) => {
+            // const { username, role, token } = data;
+            console.log(res)
+            window.localStorage.setItem("username", res.data.user.username);
+            window.localStorage.setItem('userId', res.data.user.userId)
+            // window.localStorage.setItem("role", role);
+            window.localStorage.setItem("token", res.data.token);
+            // clearForm();
+            this.props.history.push(`/users/${window.localStorage.getItem('userId')}/recipes`)
+        })
+        .catch((error) => {
+            console.log(error.response);
+            // setError(error.response.data.error);
+        })
+
     };
 
     render() {
@@ -67,13 +68,13 @@ class LoginForm extends React.Component {
                             <form className='form-container' onSubmit={this.logIn}>
                                 <h1>Welcome to Secret Recipe List</h1>
                                 <h2>Please enter your account information.</h2>
-                                    <p>e-mail:</p>
+                                    <p>Username</p>
                                     <input
                                         id="username"
                                         type="text"
                                         value={this.input}
-                                        placeholder="e-mail"
-                                        name="e-mail"
+                                        placeholder="username"
+                                        name="username"
                                         onChange={this.handleChanges}
                                     />
                                     <p>password:</p>
@@ -107,4 +108,4 @@ const mapStateToProps = state => ({
     success: state.success,
 })
 
-export default connect(mapStateToProps, {logIn})(LoginForm);
+export default connect(mapStateToProps, {logIn})(withRouter(LoginForm));

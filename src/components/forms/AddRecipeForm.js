@@ -182,7 +182,7 @@ const AddForm = () => {
                     />
                     <button onClick={addIngredient}>Add Ingredient</button>
 
-                    {state.ingredients.map((ingredient, index) => (
+                    {/* {state.ingredients.map((ingredient, index) => (
                     <div className="ingredient">
                         <ShowArrayItem
                         listNum={index + 1}
@@ -193,7 +193,7 @@ const AddForm = () => {
                         Delete Ingredient
                         </button>
                     </div>
-                    ))}
+                    ))} */}
                     </label>
                 </div>
 
@@ -208,8 +208,8 @@ const AddForm = () => {
                         type="text" 
                         />
 
-                        <button onClick={addPrep}>Plus</button>
-                        {state.prep.map((prep, index) => (
+                        {/* <button onClick={addPrep}>Plus</button> */}
+                        {/* {state.prep.map((prep, index) => (
 
                             <div className="prep">
                                 <ShowArrayItem
@@ -221,7 +221,7 @@ const AddForm = () => {
                                     Delete Prep 
                                 </button>
                             </div>
-                        ))}
+                        ))} */}
                     </label>
                 </div>
 
@@ -244,7 +244,7 @@ const AddForm = () => {
                         onChange={handleChanges}
                         value={state.type}
                     />
-                    <button onClick={addCustomType}>Add Custom Type</button>
+                    {/* <button onClick={addCustomType}>Add Custom Type</button>
                     {state.types.map((type, index) => (
                         <div className="type">
                         <p>{type}</p>
@@ -252,7 +252,7 @@ const AddForm = () => {
                             Delete Type
                         </button>
                         </div>
-                    ))}
+                    ))} */}
                     </div>
                     </label>
                 </div>

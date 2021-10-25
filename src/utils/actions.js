@@ -42,7 +42,7 @@ export const LOG_IN_FAILURE = "LOG_IN_FAILURE";
 
 export const logIn = (credentials, history) => dispatch => {
     dispatch({ type: LOG_IN_START });
-    axiosWithAuth
+    axiosWithAuth()
       .post(
         "https://ptptsecretfamilyrecipes1.herokuapp.com/api/auth/login",
         credentials
@@ -117,10 +117,11 @@ export const GET_ALL_RECIPES_START = "GET_ALL_RECIPES_START";
 export const GET_ALL_RECIPES_SUCCESS = "GET_ALL_RECIPES_SUCCESS";
 export const GET_ALL_RECIPES_FAILURE = "GET_ALL_RECIPES_FAILURE";
 
-export const getAllRecipes = recipeID => dispatch => {
+export const getAllRecipes = userID => dispatch => {
     dispatch({ type: GET_ALL_RECIPES_START });
+    console.log('userID', userID)
     axiosWithAuth()
-      .get(`/recipes`)
+      .get(`/users/${window.localStorage.getItem('userId')}/recipes`)
       .then(res => {
         dispatch({ type: GET_ALL_RECIPES_SUCCESS, payload: res.data });
       })
@@ -136,7 +137,7 @@ export const ADD_RECIPE_FAILURE = "ADD_RECIPE_FAILURE";
 export const addRecipe = (newRecipe, history) => dispatch => {
     dispatch({ type: ADD_RECIPE_START });
     axiosWithAuth()
-      .post("/recipes", newRecipe)
+      .post(`/users/${window.localStorage.getItem('userId')}/recipes`, newRecipe)
       .then(res => {
         dispatch({ type: ADD_RECIPE_SUCCESS, payload: res.data });
         const recipe_id = res.data[res.data.length + 1].id
